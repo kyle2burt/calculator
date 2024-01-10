@@ -41,6 +41,11 @@ allButtons.forEach((button) => {
                 value = 0;
                 operator = "";
                 break;
+            case ".":
+                if (currentValue.includes(".")) return;
+                currentValue = currentValue.concat(button.id);
+                valueText.textContent = currentValue;
+                break;
             case "delete":
                 currentValue = currentValue.slice(0, currentValue.length - 1);
                 valueText.textContent = currentValue;
