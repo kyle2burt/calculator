@@ -12,6 +12,7 @@ allButtons.forEach((button) => {
     button.addEventListener("click", () => {
         switch (button.classList.value) {
             case "number":
+                if (currentValue.length >= 25) return;
                 currentValue = currentValue.concat(button.id);
                 valueText.textContent = currentValue;
                 value = Number(currentValue);
