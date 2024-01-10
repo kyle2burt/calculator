@@ -38,6 +38,20 @@ allButtons.forEach((button) => {
                 value = 0;
                 operator = "";
                 break;
+            case "delete":
+                currentValue = currentValue.slice(0, currentValue.length - 1);
+                valueText.textContent = currentValue;
+                break;
+            case "clear":
+                total = 0;
+                value = 0;
+                operator = "";
+                currentValue = "";
+
+                totalText.textContent = "";
+                valueText.textContent = "";
+                operatorText.textContent = "";
+                break;
             default:
                 console.error("invalid button");
                 break;
