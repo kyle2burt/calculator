@@ -4,7 +4,9 @@ const operatorText = document.querySelector("#operator");
 const totalText = document.querySelector("#total");
 
 let currentValue = "";
-let total = 0, value = 0, operator = "";
+let total = undefined;
+let value = undefined;
+let operator = "";
 
 allButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -15,7 +17,7 @@ allButtons.forEach((button) => {
                 value = Number(currentValue);
                 break;
             case "operator":
-                if (total == 0) {
+                if (total == undefined) {
                     total = Number(currentValue);
                     totalText.textContent = value;
                 } else if (operator != "") {
@@ -29,6 +31,7 @@ allButtons.forEach((button) => {
                 currentValue = "";
                 break;
             case "=":
+                if (total == undefined || value == undefined ||operator == "") return;
                 let newTotal = operate(total, value, operator)
                 operatorText.textContent = "";
                 totalText.textContent = `${total} ${operator} ${value} =`;
@@ -43,8 +46,8 @@ allButtons.forEach((button) => {
                 valueText.textContent = currentValue;
                 break;
             case "clear":
-                total = 0;
-                value = 0;
+                total = undefined;
+                value = undefined;
                 operator = "";
                 currentValue = "";
 
@@ -72,6 +75,10 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
+    if (num2 == 0) {
+        alert("You cannot divide by 0...");
+        return;
+    }
     return num1 / num2;
 }
 
